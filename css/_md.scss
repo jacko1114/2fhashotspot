@@ -1,0 +1,222 @@
+@media (min-width: 720px) {
+  #nav {
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .menu {
+        .logo {
+          img {
+            width: C(10);
+            margin: C(2/3);
+          }
+        }
+        .facebook {
+          margin: C(2/3);
+        }
+        .hamburger {
+          display: none;
+        }
+      }
+      .collapse {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        background: transparent;
+        height: C(4);
+        a {
+          width: C(5);
+          padding: C(4/3) 0;
+          margin: 0 C(2/3);
+          color: #fff;
+          transition: 0.2s ease-out;
+          &:hover {
+            background: url("../images/menu_active.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+  #header {
+    .container {
+      margin: 20% 0 0;
+    }
+  }
+  #news {
+    padding: C(3) 0;
+    .title {
+      padding: C(2) 0;
+      font-size: C(2);
+    }
+    h2 {
+      padding: C(0.3);
+    }
+    p {
+      padding: C(0.1) C(10);
+    }
+    img {
+      width: 60%;
+    }
+  }
+  #about {
+    .title {
+      padding: C(2) 0 C(3);
+      font-size: C(2);
+    }
+    img {
+      width: 100%;
+    }
+    p {
+      transform: translateY(0);
+      font-size: C(4/3);
+    }
+  }
+  #menu {
+    background: url("../images/img1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    display: block;
+    position: relative;
+    .menu-l {
+      padding: C(4);
+      .title {
+        padding: C(2) 0;
+        color: map-get($colors, light_);
+        text-shadow: 2px 2px 1px #333;
+        &:before,
+        &:after {
+          box-shadow: 2px 0 2px #333;
+        }
+      }
+      p {
+        padding: C(1) 0;
+        color: map-get($colors, light_);
+        font-weight: 700;
+        font-size: C(1.3);
+        text-shadow: 2px 2px 1px #333;
+      }
+      .fas {
+        color: map-get($colors, light_);
+        line-height: C(3);
+        text-align: center;
+        font-size: C(3);
+      }
+      .pre-btn {
+        position: absolute;
+        width: C(4.5);
+        height: C(4.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        right: 30%;
+        top: 20%;
+        background: map-get($colors, l-blue_);
+        cursor: pointer;
+        transition: 0.3s ease;
+        &:hover {
+          background: #0070b6;
+        }
+      }
+      .nxt-btn {
+        position: absolute;
+        width: C(4.5);
+        height: C(4.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        right: 12%;
+        top: 20%;
+        background: map-get($colors, l-blue_);
+        transition: 0.3s ease;
+        cursor: pointer;
+        &:hover {
+          background: #0070b6;
+        }
+      }
+    }
+    .menu-r {
+      width: 80%;
+      height: C(30);
+      margin: 0 auto C(6);
+      padding: C(2) C(4);
+      writing-mode: vertical-rl;
+      transition: all 0.5s ease-out;
+      background: url("../images/border-1.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      background-position: 40% -40%;
+      .f {
+        padding: C(3) 0;
+      }
+      h1 {
+        padding: 0 C(1);
+        letter-spacing: C(2/15);
+        font-weight: 900;
+      }
+      ul {
+        li {
+          padding: C(0.5);
+          font-weight: 700;
+          font-size: C(1.3);
+        }
+      }
+      img {
+        display: none;
+      }
+    }
+    .fade {
+      animation: fade_menu 1s;
+    }
+    @keyframes fade_menu {
+      0% {
+        opacity: 0.1;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+  #contact {
+    padding: C(3) 0 0;
+    .title {
+      padding: C(2) 0;
+      font-size: C(2);
+    }
+    .map {
+      display: block;
+      img {
+        display: block;
+        margin: 10% auto;
+        width: 80%;
+        object-fit: cover;
+        border-radius: C(4/3);
+      }
+    }
+  }
+  #footer {
+    #gotop {
+      width: C(4);
+      height: C(4);
+      line-height: C(16/3);
+      font-weight: 600;
+      font-size: C(1);
+      &:before {
+        width: C(2/3);
+        height: C(2/3);
+        top: C(1);
+        right: C(1.5);
+      }
+    }
+  }
+}
