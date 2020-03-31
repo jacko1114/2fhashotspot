@@ -5,39 +5,7 @@
       justify-content: center;
       align-items: center;
       .menu {
-        .logo {
-          img {
-            width: C(10);
-            margin: C(2/3);
-          }
-        }
-        .facebook {
-          margin: C(2/3);
-        }
-        .hamburger {
-          display: none;
-        }
-      }
-      .collapse {
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        background: transparent;
-        height: C(4);
-        a {
-          width: C(5);
-          padding: C(4/3) 0;
-          margin: 0 C(2/3);
-          color: #fff;
-          transition: 0.2s ease-out;
-          &:hover {
-            background: url("../images/menu_active.png");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            color: #333;
-          }
-        }
+        width: 100%;
       }
     }
   }
