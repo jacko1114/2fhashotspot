@@ -24,7 +24,7 @@ Vue.component("navbar-tag", {
     return {
       src: "images/logo_row_w.png",
       social_media: ["https://www.facebook.com/2fhashotpot/", "f"],
-      Open: false
+      Open: false,
     };
   },
   methods: {
@@ -33,8 +33,8 @@ Vue.component("navbar-tag", {
     },
     closeStatus() {
       this.Open = false;
-    }
-  }
+    },
+  },
 });
 Vue.component("header-tag", {
   template: `<div class="container" id="header">
@@ -51,9 +51,9 @@ Vue.component("header-tag", {
             </div>`,
   data() {
     return {
-      content: ["天氣還是很涼的", "等你來開鍋"]
+      content: ["天氣還是很涼的", "等你來開鍋"],
     };
-  }
+  },
 });
 Vue.component("breakingnews-tag", {
   template: `<div class="container" id="news">
@@ -63,7 +63,7 @@ Vue.component("breakingnews-tag", {
                 </div>
                 <div class="col-12 slide fade" v-for="(data,index) in datas" v-show="index === active">
                   <div class="co1-12 col-lg-5">
-                    <img :src="data.imgpath" :alt="data.title">
+                    <img :src="data.imgpath" :alt="data.title" :style="{transform:data.style}">
                   </div>
                   <div class="col-12 col-lg-7">
                     <h2>{{data.title}}</h2>
@@ -90,56 +90,61 @@ Vue.component("breakingnews-tag", {
         {
           imgpath: "./images/clear.jpg",
           title: "關懷疫情，全面消毒",
+          style: "rotate(0deg)",
           content1:
-            "防疫從每個小細節開始，為保障顧客安全，貳樓友火鍋每天都會使用酒精清潔，一人一鍋讓你安心享受美食，此外即日起提供外帶服務～",
+            "防疫從每個細節開始，為保障顧客安全，貳樓友火鍋每天都會使用酒精清潔，一人一鍋讓你安心享受美食，此外即日起提供外帶服務～",
           content2: "歡迎來電預訂外帶 : ",
-          tel: "01-4252070"
+          tel: "01-4252070",
         },
         {
           imgpath: "./images/clear.jpg",
           title: "全面消毒，關懷疫情",
+          style: "rotate(90deg)",
           content1:
-            "防疫從每個小細節開始，為保障顧客安全，貳樓友火鍋每天都會使用酒精清潔，一人一鍋讓你安心享受美食，此外即日起提供外帶服務～",
+            "防疫從小細節開始，為保障顧客安全，貳樓友火鍋每天都會使用酒精清潔，一人一鍋讓你安心享受美食，此外即日起提供外帶服務～",
           content2: "歡迎來電預訂外帶 : ",
-          tel: "02-4252070"
+          tel: "02-4252070",
         },
         {
           imgpath: "./images/clear.jpg",
           title: "疫情關懷，全面消毒",
+          style: "rotate(180deg)",
           content1:
-            "防疫從每個小細節開始，為保障顧客安全，貳樓友火鍋每天都會使用酒精清潔，一人一鍋讓你安心享受美食，此外即日起提供外帶服務～",
+            "防疫從大細節開始，為保障顧客安全，貳樓友火鍋每天都會使用酒精清潔，一人一鍋讓你安心享受美食，此外即日起提供外帶服務～",
           content2: "歡迎來電預訂外帶 : ",
-          tel: "03-4252070"
+          tel: "03-4252070",
         },
         {
           imgpath: "./images/clear.jpg",
           title: "關懷疫情，消毒全面",
+          style: "rotate(270deg)",
           content1:
             "防疫從每個小細節開始，為保障顧客安全，貳樓友火鍋每天都會使用酒精清潔，一人一鍋讓你安心享受美食，此外即日起提供外帶服務～",
           content2: "歡迎來電預訂外帶 : ",
-          tel: "04-4252070"
+          tel: "04-4252070",
         },
         {
           imgpath: "./images/clear.jpg",
           title: "消毒全面，關懷疫情",
+          style: "rotate(180deg)",
           content1:
-            "防疫從每個小細節開始，為保障顧客安全，貳樓友火鍋每天都會使用酒精清潔，一人一鍋讓你安心享受美食，此外即日起提供外帶服務～",
+            "防疫從每個大細節開始，為保障顧客安全，貳樓友火鍋每天都會使用酒精清潔，一人一鍋讓你安心享受美食，此外即日起提供外帶服務～",
           content2: "歡迎來電預訂外帶 : ",
-          tel: "05-4252070"
-        }
-      ]
+          tel: "05-4252070",
+        },
+      ],
     };
   },
   computed: {
     total() {
       return this.datas.length;
-    }
+    },
   },
   methods: {
     change(index) {
       this.active = (index + this.total) % this.total;
-    }
-  }
+    },
+  },
 });
 Vue.component("aboutus-tag", {
   template: `<div class="container" id="about">
@@ -179,20 +184,20 @@ Vue.component("aboutus-tag", {
           imgpath: "./images/img2.jpg",
           alt: "環境清幽",
           slogan: "環境清幽",
-          id: "#popup1"
+          id: "#popup1",
         },
         {
           imgpath: "./images/img3.jpg",
           alt: "新鮮食材",
           slogan: "新鮮食材",
-          id: "#popup2"
+          id: "#popup2",
         },
         {
           imgpath: "./images/img4.jpg",
           alt: "平價美食",
           slogan: "平價美食",
-          id: "#popup3"
-        }
+          id: "#popup3",
+        },
       ],
       about_details: [
         {
@@ -201,7 +206,7 @@ Vue.component("aboutus-tag", {
           title: "環境清幽",
           text:
             "這邊的故事隨便你們瞎掰，只要假裝文卿煞尤其事客人接受肯來買單就好。我們想讓客人吃到拉希，我們不要你們來。我就是打些沒意義的內容給你們看爽的給我乖乖想文案。我們就是一家火鍋店看看就好不爽不要吃甘霖糧草之百山林良都蘭山小山林老木金傑百洲杜蘭。",
-          show: false
+          show: false,
         },
         {
           id: "popup2",
@@ -209,7 +214,7 @@ Vue.component("aboutus-tag", {
           title: "新鮮食材",
           text:
             "這邊的故事隨便你們瞎掰，只要假裝文卿煞尤其事客人接受肯來買單就好。我們想讓客人吃到拉希，我們不要你們來。我就是打些沒意義的內容給你們看爽的給我乖乖想文案。我們就是一家火鍋店看看就好不爽不要吃甘霖糧草之百山林良都蘭山小山林老木金傑百洲杜蘭。",
-          show: false
+          show: false,
         },
         {
           id: "popup3",
@@ -217,17 +222,17 @@ Vue.component("aboutus-tag", {
           title: "平價美食",
           text:
             "這邊的故事隨便你們瞎掰，只要假裝文卿煞尤其事客人接受肯來買單就好。我們想讓客人吃到拉希，我們不要你們來。我就是打些沒意義的內容給你們看爽的給我乖乖想文案。我們就是一家火鍋店看看就好不爽不要吃甘霖糧草之百山林良都蘭山小山林老木金傑百洲杜蘭。",
-          show: false
-        }
-      ]
+          show: false,
+        },
+      ],
     };
   },
   methods: {
     change(index) {
       this.show = !this.show;
       this.about_details[index].show = !this.about_details[index].show;
-    }
-  }
+    },
+  },
 });
 Vue.component("deliciousmenu-tag", {
   template: `<div class="container" id="menu" :style="{backgroundImage:'url('+background+')'}">
@@ -260,7 +265,7 @@ Vue.component("deliciousmenu-tag", {
       contents: [
         " * 每人低消200元可抵單點",
         " * 兒童110不另計價",
-        " * 限兩人共鍋"
+        " * 限兩人共鍋",
       ],
       datas: [
         {
@@ -278,11 +283,11 @@ Vue.component("deliciousmenu-tag", {
                 "嫩切羊卷",
                 "澳洲羊肉",
                 "梅花豬",
-                "豬五花"
-              ]
+                "豬五花",
+              ],
             },
-            { title: "湯底", menus: ["原味湯底", "麻辣湯底", "酸白菜湯底"] }
-          ]
+            { title: "湯底", menus: ["原味湯底", "麻辣湯底", "酸白菜湯底"] },
+          ],
         },
         {
           imgpath: "./images/img2.jpg",
@@ -301,23 +306,23 @@ Vue.component("deliciousmenu-tag", {
                 "白蝦",
                 "鱸魚片",
                 "蛤蠣",
-                "巴沙魚片"
-              ]
-            }
-          ]
+                "巴沙魚片",
+              ],
+            },
+          ],
         },
         {
           imgpath: "./images/img7.jpg",
           subclass: [
             {
               title: "火鍋料",
-              menus: ["滷大腸", "三記魚餃", "蛋餃", "貢丸", "年糕"]
+              menus: ["滷大腸", "三記魚餃", "蛋餃", "貢丸", "年糕"],
             },
             {
               title: "蔬菜類",
-              menus: ["高麗菜", "金針菇", "芋頭", "香菇", "玉米筍"]
-            }
-          ]
+              menus: ["高麗菜", "金針菇", "芋頭", "香菇", "玉米筍"],
+            },
+          ],
         },
         {
           imgpath: "./images/img6.jpg",
@@ -330,25 +335,25 @@ Vue.component("deliciousmenu-tag", {
                 "美式 冰 / 熱",
                 "可爾必思",
                 "雪碧",
-                "可樂"
-              ]
-            }
-          ]
-        }
-      ]
+                "可樂",
+              ],
+            },
+          ],
+        },
+      ],
     };
   },
   computed: {
     total() {
       return this.datas.length;
-    }
+    },
   },
   methods: {
     change(index) {
       this.active = (index + this.total) % this.total;
       this.background = this.datas[this.active].imgpath;
-    }
-  }
+    },
+  },
 });
 Vue.component("contactwith-tag", {
   template: `<div class="container" id="contact">
@@ -390,25 +395,25 @@ Vue.component("contactwith-tag", {
           contents: [
             "周三至周日",
             "11:30 a.m. - 14:30 p.m.",
-            "17:30 p.m. - 21:30 p.m."
-          ]
+            "17:30 p.m. - 21:30 p.m.",
+          ],
         },
         {
           class: "fas fa-phone",
           name: "電話",
-          content: "03-425-2070"
+          content: "03-425-2070",
         },
         {
           class: ["fas fa-map-marker-alt", "fas fa-external-link-alt"],
           name: "地址",
           content: [
             "https://www.google.com/maps/place/320%E6%A1%83%E5%9C%92%E5%B8%82%E4%B8%AD%E5%A3%A2%E5%8D%80%E6%96%B0%E7%94%9F%E8%B7%AF311%E8%99%9F",
-            "桃園市中壢區新生路311號2樓"
-          ]
-        }
-      ]
+            "桃園市中壢區新生路311號2樓",
+          ],
+        },
+      ],
     };
-  }
+  },
 });
 Vue.component("footer-tag", {
   template: `<div class="container" id="footer">
@@ -422,7 +427,7 @@ Vue.component("footer-tag", {
       link: { id: "gotop", name: "Top" },
       content: ["貳樓友火鍋 2020 ", "Copyright &copy All Rights Reserved."],
       status: false,
-      scrollTop: 0
+      scrollTop: 0,
     };
   },
   mounted() {
@@ -434,8 +439,8 @@ Vue.component("footer-tag", {
         : null;
       this.status = this.scrollTop > 400;
     };
-  }
+  },
 });
 let nav = new Vue({
-  el: "#root"
+  el: "#root",
 });
