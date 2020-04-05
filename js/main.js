@@ -467,6 +467,6 @@ let nav = new Vue({
   mounted() {
     setTimeout(() => {
       this.loading = false;
-    }, 100);
+    }, 3000);
   },
 });
