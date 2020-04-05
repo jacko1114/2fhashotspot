@@ -1,3 +1,17 @@
+Vue.component("load-tag", {
+  template: `<div class="container" id="loading">
+              <div class="wrapper">
+                <div class="content">
+                  <p>loading
+                    <span class="loading">.</span>
+                    <span class="loading">.</span>
+                    <span class="loading">.</span>
+                  </p>
+                </div>
+              </div>
+            </div>`,
+  props: ["loading"],
+});
 Vue.component("navbar-tag", {
   template: `<div class="container" id="nav">
               <div class="wrapper">
@@ -432,10 +446,12 @@ Vue.component("footer-tag", {
   },
   mounted() {
     window.onscroll = () => {
-      this.scrollTop = document.body.scrollTop
-        ? document.body.scrollTop
-        : document.documentElement && document.documentElement.scrollTop
-        ? document.documentElement.scrollTop
+      let body = document.body; //<body>
+      let documentElement = document.documentElement; //<html>
+      this.scrollTop = body.scrollTop
+        ? body.scrollTop
+        : documentElement.scrollTop
+        ? documentElement.scrollTop
         : null;
       this.status = this.scrollTop > 400;
     };
@@ -443,4 +459,14 @@ Vue.component("footer-tag", {
 });
 let nav = new Vue({
   el: "#root",
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 3500);
+  },
 });
