@@ -262,7 +262,7 @@ Vue.component("deliciousmenu-tag", {
                   </div>
                 </div>
                 <div class="col-md-12 col-lg-8 menu-r fade" v-for="(data,index) in datas" v-show="index === active">
-                  <div class="f" v-for="t in data.subclass">
+                  <div class="m" v-for="t in data.subclass">
                     <h1 >{{t.title}}</h1>
                     <ul>
                       <li v-for="m in t.menus">{{m}}</li>
@@ -467,6 +467,6 @@ let nav = new Vue({
   mounted() {
     setTimeout(() => {
       this.loading = false;
-    }, 3500);
+    }, 100);
   },
 });
