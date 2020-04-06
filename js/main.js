@@ -88,10 +88,10 @@ Vue.component("breakingnews-tag", {
                     <p>{{data.content2}}<span>{{data.tel}}</span></p>
                   </div>
                 </div>
-                <div class="prev-btn" @click="change(active-1)" @mouseover="stopCarousel" @mouseout="startCarousel">
+                <div class="prev-btn" @click="change(-1)" @mouseover="stopCarousel" @mouseout="startCarousel">
                   <i class="fas fa-angle-left"></i>
                 </div>
-                <div class="next-btn" @click="change(active+1)" @mouseover="stopCarousel" @mouseout="startCarousel">
+                <div class="next-btn" @click="change(+1)" @mouseover="stopCarousel" @mouseout="startCarousel">
                   <i class="fas fa-angle-right"></i>
                 </div>
                 <div class="dots">
@@ -161,6 +161,7 @@ Vue.component("breakingnews-tag", {
   },
   methods: {
     change(index) {
+      index += this.active;
       this.active = (index + this.total) % this.total;
     },
     startCarousel() {
@@ -277,10 +278,10 @@ Vue.component("deliciousmenu-tag", {
                 <div class="col-md-12 col-lg-4 menu-l">
                   <h1 class="title">{{title}}</h1>
                   <p v-for="content in contents">{{content}}</p>
-                  <div class="pre-btn" @click="change(active-1)">
+                  <div class="pre-btn" @click="change(-1)">
                       <i class="fas fa-angle-left"></i>
                   </div>
-                  <div class="nxt-btn" @click="change(active+1)">
+                  <div class="nxt-btn" @click="change(+1)">
                       <i class="fas fa-angle-right"></i>
                   </div>
                 </div>
@@ -387,6 +388,7 @@ Vue.component("deliciousmenu-tag", {
   },
   methods: {
     change(index) {
+      index += this.active;
       this.active = (index + this.total) % this.total;
       this.background = this.datas[this.active].imgpath;
     },
