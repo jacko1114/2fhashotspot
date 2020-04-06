@@ -12,6 +12,7 @@ Vue.component("load-tag", {
             </div>`,
   props: ["loading"],
 });
+
 Vue.component("navbar-tag", {
   template: `<div class="container" id="nav">
               <div class="wrapper">
@@ -50,6 +51,7 @@ Vue.component("navbar-tag", {
     },
   },
 });
+
 Vue.component("header-tag", {
   template: `<div class="container" id="header">
               <div class="wrapper">
@@ -69,13 +71,14 @@ Vue.component("header-tag", {
     };
   },
 });
+
 Vue.component("breakingnews-tag", {
   template: `<div class="container" id="news">
               <div class="wrapper">
                 <div class="col-12">
                   <h1 class="title">{{title}}</h1>
                 </div>
-                <div class="col-12 slide fade" v-for="(data,index) in datas" v-show="index === active">
+                <div class="col-12 slide fade" v-for="(data,index) in datas" v-show="index === active" @mouseover="stopCarousel" @mouseout="startCarousel">
                   <div class="co1-12 col-lg-5">
                     <img :src="data.imgpath" :alt="data.title" :style="{transform:data.style}">
                   </div>
@@ -85,14 +88,14 @@ Vue.component("breakingnews-tag", {
                     <p>{{data.content2}}<span>{{data.tel}}</span></p>
                   </div>
                 </div>
-                <div class="prev-btn" @click="change(active-1)">
+                <div class="prev-btn" @click="change(active-1)" @mouseover="stopCarousel" @mouseout="startCarousel">
                   <i class="fas fa-angle-left"></i>
                 </div>
-                <div class="next-btn" @click="change(active+1)">
+                <div class="next-btn" @click="change(active+1)" @mouseover="stopCarousel" @mouseout="startCarousel">
                   <i class="fas fa-angle-right"></i>
                 </div>
                 <div class="dots">
-                  <span class="dot" :class="{active:active === index}" :data-index="num" v-for="(num,index) in 5" @click="change(index)"></span>
+                  <span class="dot" :class="{active:active === index}" :data-index="num" v-for="(num,index) in 5" @click="change(index)" @mouseover="stopCarousel" @mouseout="startCarousel"></span>
                 </div>
               </div>
             </div>`,
@@ -100,6 +103,8 @@ Vue.component("breakingnews-tag", {
     return {
       title: "最新消息",
       active: 0,
+      timer: null,
+      speed: 3000,
       datas: [
         {
           imgpath: "./images/clear.jpg",
@@ -158,8 +163,25 @@ Vue.component("breakingnews-tag", {
     change(index) {
       this.active = (index + this.total) % this.total;
     },
+    startCarousel() {
+      this.timer = setInterval(this.autoMove, this.speed);
+    },
+    stopCarousel() {
+      clearInterval(this.timer);
+      this.timer = null;
+    },
+    autoMove() {
+      let current = this.active;
+      let next = current + 1;
+      next > this.total - 1 ? (next = 0) : next;
+      this.active = next;
+    },
+  },
+  mounted() {
+    this.startCarousel();
   },
 });
+
 Vue.component("aboutus-tag", {
   template: `<div class="container" id="about">
               <div class="wrapper clearfix" :class="{active:show}">
@@ -248,6 +270,7 @@ Vue.component("aboutus-tag", {
     },
   },
 });
+
 Vue.component("deliciousmenu-tag", {
   template: `<div class="container" id="menu" :style="{backgroundImage:'url('+background+')'}">
               <div class="wrapper clearfix">
@@ -369,6 +392,7 @@ Vue.component("deliciousmenu-tag", {
     },
   },
 });
+
 Vue.component("contactwith-tag", {
   template: `<div class="container" id="contact">
               <div class="wrapper clearfix">
@@ -429,6 +453,7 @@ Vue.component("contactwith-tag", {
     };
   },
 });
+
 Vue.component("footer-tag", {
   template: `<div class="container" id="footer">
               <div class="wrapper">
@@ -450,9 +475,7 @@ Vue.component("footer-tag", {
       let documentElement = document.documentElement; //<html>
       this.scrollTop = body.scrollTop
         ? body.scrollTop
-        : documentElement.scrollTop
-        ? documentElement.scrollTop
-        : null;
+        : documentElement.scrollTop;
       this.status = this.scrollTop > 400;
     };
   },
@@ -464,9 +487,14 @@ let nav = new Vue({
       loading: true,
     };
   },
+  methods: {
+    loadPage() {
+      setTimeout(() => {
+        this.loading = false;
+      }, 3000);
+    },
+  },
   mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 3000);
+    this.loadPage();
   },
 });
