@@ -286,7 +286,7 @@ Vue.component("deliciousmenu-tag", {
                   </div>
                 </div>
                 <div class="col-md-12 col-lg-8 menu-r fade" v-for="(data,index) in datas" v-show="index === active">
-                  <div class="m" v-for="t in data.subclass">
+                  <div class="menu-list" v-for="t in data.subclass">
                     <h1 >{{t.title}}</h1>
                     <ul>
                       <li v-for="m in t.menus">{{m}}</li>
