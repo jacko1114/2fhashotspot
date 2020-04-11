@@ -510,7 +510,7 @@ let nav = new Vue({
     loadPage() {
       setTimeout(() => {
         this.loading = false;
-      }, 100);
+      }, 2000);
     },
   },
   mounted() {
