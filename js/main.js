@@ -14,11 +14,11 @@ Vue.component("load-tag", {
 });
 
 Vue.component("navbar-tag", {
-  template: `<div class="container" id="nav">
+  template: `<div class="container" id="nav" :class="status === true ?'active':''">
               <div class="wrapper">
                 <div class="menu">
                   <div class="logo">
-                    <img :src="src" alt="logo">
+                    <img :src="status === true ?'images/logo_row_b.png':'images/logo_row_w.png'" alt="logo">
                   </div>
                   <div class="facebook">
                     <a :href="social_media[0]" target="_blank">{{social_media[1]}}</a>
@@ -37,9 +37,10 @@ Vue.component("navbar-tag", {
             </div>`,
   data() {
     return {
-      src: "images/logo_row_w.png",
       social_media: ["https://www.facebook.com/2fhashotpot/", "f"],
       Open: false,
+      status: false,
+      scrollTop: 0,
     };
   },
   methods: {
@@ -49,6 +50,17 @@ Vue.component("navbar-tag", {
     closeStatus() {
       this.Open = false;
     },
+  },
+  mounted() {
+    window.addEventListener("scroll", () => {
+      let body = document.body;
+      let documentElement = document.documentElement;
+      let that = this;
+      that.scrollTop = body.scrollTop
+        ? body.scrollTop
+        : documentElement.scrollTop;
+      that.status = that.scrollTop > 60;
+    });
   },
 });
 
@@ -93,9 +105,6 @@ Vue.component("breakingnews-tag", {
                 </div>
                 <div class="next-btn" @click="change(+1)" @mouseover="stopCarousel" @mouseout="startCarousel">
                   <i class="fas fa-angle-right"></i>
-                </div>
-                <div class="dots">
-                  <span class="dot" :class="{active:active === index}" :data-index="num" v-for="(num,index) in 5" @click="change(index)" @mouseover="stopCarousel" @mouseout="startCarousel"></span>
                 </div>
               </div>
             </div>`,
@@ -185,7 +194,7 @@ Vue.component("breakingnews-tag", {
 
 Vue.component("aboutus-tag", {
   template: `<div class="container" id="about">
-              <div class="wrapper clearfix" :class="{active:show}">
+              <div class="wrapper clearfix">
                 <div class="col-12">
                   <h1 class="title">{{title}}</h1>
                 </div>
@@ -199,17 +208,21 @@ Vue.component("aboutus-tag", {
                   </div>
                 </div>
               </div>
-              <div class="popup" :id="about_detail.id" v-for="(about_detail,index) in about_details" :class="{active:about_detail.show}" @close="about.show = false">
-                <div class="col-lg-5">
-                  <img :src="about_detail.imgpath" :alt="about_detail.title">
-                </div>
-                <div class="col-lg-7">
-                  <div class="close-btn">
+              <div class="popup-background" :class="{active:about_detail.show}" v-for="(about_detail,index) in about_details" :id="about_detail.id" >
+                <div class="popup" :class="{active:about_detail.show}" @close="about.show = false">
+                  <div class="col-lg-12 modal-title">
+                    <h1>{{about_detail.title}}</h1>
                     <i class="fas fa-times" @click="change(index)"></i>
                   </div>
-                  <h1>{{about_detail.title}}</h1>
-                  <p>{{about_detail.text}}</p>
-                </div>
+                  <div class="col-lg-12">
+                    <div class="col-lg-5">
+                      <img :src="about_detail.imgpath" :alt="about_detail.title">
+                    </div>
+                    <div class="col-lg-7">
+                      <p>{{about_detail.text}}</p>
+                    </div>
+                  </div>
+                </div>   
               </div>
             </div>`,
   data() {
@@ -288,9 +301,9 @@ Vue.component("deliciousmenu-tag", {
                 <div class="col-md-12 col-lg-8 menu-r fade" v-for="(data,index) in datas" v-show="index === active">
                   <div class="menu-list" v-for="t in data.subclass">
                     <h1 >{{t.title}}</h1>
-                    <ul>
-                      <li v-for="m in t.menus">{{m}}</li>
-                    </ul>
+                    <div class="menu-item">
+                      <span v-for="m in t.menus">{{m}}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -315,13 +328,13 @@ Vue.component("deliciousmenu-tag", {
                 "鱸魚蛤蠣",
                 "鮮蝦蛤蠣",
                 "美國小肥牛",
-                "美安格斯背肩",
                 "澳洲牛板腱",
                 "頂級牛小排",
                 "嫩切羊卷",
                 "澳洲羊肉",
                 "梅花豬",
                 "豬五花",
+                "美安格斯背肩",
               ],
             },
             { title: "湯底", menus: ["原味湯底", "麻辣湯底", "酸白菜湯底"] },
@@ -403,7 +416,7 @@ Vue.component("contactwith-tag", {
                 </div>
                 <div class="wrap">
                   <div class="col-12 col-lg-6 map">
-                    <img :src="img.imgpath" :alt="img.name">
+                    <iframe :src="map.src" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"/>
                   </div>
                   <div class="col-12 col-lg-6 content">
                     <div class="info">
@@ -417,7 +430,7 @@ Vue.component("contactwith-tag", {
                     <div class="info">
                       <h2><i :class="infos[2].class[0]"></i>{{infos[2].name}}<span> : </span></h2>
                       <p>
-                        <a :href="infos[2].content[0]" target="_blank">{{infos[2].content[1]}}<i :class="infos[2].class[1]"></i></a>
+                        {{infos[2].content[1]}}
                       </p>
                     </div>
                   </div>
@@ -427,7 +440,10 @@ Vue.component("contactwith-tag", {
   data() {
     return {
       title: "聯絡方式",
-      img: { imgpath: "./images/map.png", name: "商家地圖" },
+      map: {
+        src:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.0497203259815!2d121.220883214881!3d24.96442294723131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34682231642f2d97%3A0xd324f4a844f04b42!2zMzIw5qGD5ZyS5biC5Lit5aOi5Y2A5paw55Sf6LevMzEx6JmfMg!5e0!3m2!1szh-TW!2stw!4v1586593202825!5m2!1szh-TW!2stw",
+      },
       infos: [
         {
           imgpath: "./images/logo_s.png",
@@ -472,14 +488,15 @@ Vue.component("footer-tag", {
     };
   },
   mounted() {
-    window.onscroll = () => {
-      let body = document.body; //<body>
-      let documentElement = document.documentElement; //<html>
-      this.scrollTop = body.scrollTop
+    window.addEventListener("scroll", () => {
+      let body = document.body;
+      let documentElement = document.documentElement;
+      let that = this;
+      that.scrollTop = body.scrollTop
         ? body.scrollTop
         : documentElement.scrollTop;
-      this.status = this.scrollTop > 400;
-    };
+      that.status = that.scrollTop > 400;
+    });
   },
 });
 let nav = new Vue({
@@ -493,7 +510,7 @@ let nav = new Vue({
     loadPage() {
       setTimeout(() => {
         this.loading = false;
-      }, 3000);
+      }, 100);
     },
   },
   mounted() {
