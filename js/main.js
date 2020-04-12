@@ -2,15 +2,33 @@ Vue.component("load-tag", {
   template: `<div class="container" id="loading">
               <div class="wrapper">
                 <div class="content">
-                  <p>loading
-                    <span class="loading">.</span>
-                    <span class="loading">.</span>
-                    <span class="loading">.</span>
-                  </p>
+                  <div class="logo-ani">
+                    <img :src="i.path" :class="i.name"  v-for="i in imgpaths">
+                  </div>
+                  <div class="txt">
+                    <p>loading
+                      <span class="loading">.</span>
+                      <span class="loading">.</span>
+                      <span class="loading">.</span>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>`,
   props: ["loading"],
+  data() {
+    return {
+      imgpaths: [
+        { name: "body", path: "./images/logo-ani-1.png" },
+        { name: "hotspot", path: "./images/logo-ani-2.png" },
+        { name: "plate", path: "./images/logo-ani-3.png" },
+        { name: "dbdot", path: "./images/logo-ani-4.png" },
+        { name: "dot", path: "./images/logo-ani-5.png" },
+        { name: "adb", path: "./images/logo-ani-6.png" },
+        { name: "holder", path: "./images/logo-ani-7.png" },
+      ],
+    };
+  },
 });
 
 Vue.component("navbar-tag", {
@@ -55,18 +73,17 @@ Vue.component("navbar-tag", {
     window.addEventListener("scroll", () => {
       let body = document.body;
       let documentElement = document.documentElement;
-      let that = this;
-      that.scrollTop = body.scrollTop
+      this.scrollTop = body.scrollTop
         ? body.scrollTop
         : documentElement.scrollTop;
-      that.status = that.scrollTop > 60;
+      this.status = this.scrollTop > 60;
     });
   },
 });
 
 Vue.component("header-tag", {
   template: `<div class="container" id="header">
-              <div class="wrapper">
+              <div class="wrapper clearfix">
                 <div class="content">
                   <i class="fas fa-quote-left"></i>
                   <p>{{content[0]}}<br><span>{{content[1]}}</span></p>
@@ -86,7 +103,7 @@ Vue.component("header-tag", {
 
 Vue.component("breakingnews-tag", {
   template: `<div class="container" id="news">
-              <div class="wrapper">
+              <div class="wrapper clearfix">
                 <div class="col-12">
                   <h1 class="title">{{title}}</h1>
                 </div>
@@ -476,13 +493,13 @@ Vue.component("footer-tag", {
   template: `<div class="container" id="footer">
               <div class="wrapper">
                 <a href="javscript:;" :id="link.id"  v-show="status" v-scroll-to="{ el: '#root', easing:'linear' }" :class="{active:status}">{{link.name}}</a>
-                <p>{{content[0]}}<br>{{content[1]}}</p>
+                <p>{{content[0]}}<br>{{content[1]}}<i class="far fa-copyright"></i>{{content[2]}}</p>
               </div>
             </div>`,
   data() {
     return {
       link: { id: "gotop", name: "Top" },
-      content: ["貳樓友火鍋 2020 ", "Copyright &copy All Rights Reserved."],
+      content: ["貳樓友火鍋 2020 ", "Copyright ", " All Rights Reserved."],
       status: false,
       scrollTop: 0,
     };
