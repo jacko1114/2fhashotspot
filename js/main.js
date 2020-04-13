@@ -225,11 +225,11 @@ Vue.component("aboutus-tag", {
                   </div>
                 </div>
               </div>
-              <div class="popup-background" :class="{active:about_detail.show}" v-for="(about_detail,index) in about_details" :id="about_detail.id" >
+              <div class="popup-background" :class="{active:about_detail.show}" v-for="(about_detail,index) in about_details" :id="about_detail.id" @click.self="change(index)">
                 <div class="popup" :class="{active:about_detail.show}" @close="about.show = false">
                   <div class="col-lg-12 modal-title">
                     <h1>{{about_detail.title}}</h1>
-                    <i class="fas fa-times" @click="change(index)"></i>
+                    <i class="fas fa-times" @click.self="change(index)"></i>
                   </div>
                   <div class="col-lg-12">
                     <div class="col-lg-5">
