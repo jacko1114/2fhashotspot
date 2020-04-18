@@ -10,6 +10,5 @@ css/_scrollbar.scss
 css/_text.scss
 css/_var.scss
 css/all.css
-css/all.css.map
-css/all.min.css.map
+css/*.map
 css/all.scss
