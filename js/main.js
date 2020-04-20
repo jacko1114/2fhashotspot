@@ -493,13 +493,14 @@ Vue.component("footer-tag", {
   template: `<div class="container" id="footer">
               <div class="wrapper">
                 <a href="javscript:;" :id="link.id"  v-show="status" v-scroll-to="{ el: '#root', easing:'linear' }" :class="{active:status}">{{link.name}}</a>
-                <p>{{content[0]}}<br>{{content[1]}}<i class="far fa-copyright"></i>{{content[2]}}</p>
+                <p>{{content[0]}}{{year}}<br>{{content[1]}}<i class="far fa-copyright"></i>{{content[2]}}</p>
               </div>
             </div>`,
   data() {
     return {
       link: { id: "gotop", name: "Top" },
-      content: ["貳樓友火鍋 2020 ", "Copyright ", " All Rights Reserved."],
+      content: ["貳樓友火鍋 ", " Copyright ", " All Rights Reserved."],
+      year: new Date().getFullYear(),
       status: false,
       scrollTop: 0,
     };
